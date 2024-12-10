@@ -134,9 +134,20 @@ span.highlight {
   background-color: #ffffd0;
 }
 
-.colored-box {
-    color: black;
-    padding: 20px;
-    display: inline-block;
-    border-radius: 10px;
+.btn-custom-sm {
+  width: 65px;
+  padding: 1px 5px;
+  font-size: 12px;
+}
+
+ul {
+  list-style-position: outside;
+  /* margin-left: 0; */
+  /* padding-left: 1em; */
+  padding-left:10px;
+  margin: 0px 0px 0px 0px;
+}
+
+.same-width {
+  font-family: monospace;
 }
