@@ -95,7 +95,7 @@ h2 {
   margin: 0;
   font-weight: normal;
   font-family: 'Lato', Verdana, Helvetica, sans-serif;
-  font-size: 22px;
+  font-size: 1.6rem;
 }
 
 .papertitle {
@@ -396,4 +396,116 @@ ul {
 .me-author:hover {
   background-color: #fff48c;         /* slightly brighter yellow */
   transition: background-color 0.2s ease-in-out;
+}
+
+/* === Experience with logos === */
+.experience-list {
+  list-style: none;
+  margin: 0;
+  padding: 12px 20px;
+  background: #fff;
+  border-left: 5px solid #b4e1b9;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.experience-list li {
+  display: flex;               /* logo + text inline */
+  align-items: center;
+  gap: 12px;                   /* space between logo and text */
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin: 8px 0;
+  padding-left: 0;             /* remove the custom bullet offset */
+  position: relative;
+}
+
+/* remove the previous dot bullets if you had them */
+.experience-list li::before { content: none; }
+
+.experience-logo {
+  width: 48px;                  /* slightly smaller than 50 → better text alignment */
+  height: 48px;
+  object-fit: contain;
+  background: #fff;
+  border-radius: 8px;           /* slightly rounder corners for larger size */
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  flex: 0 0 48px;
+  margin-right: 8px;            /* extra spacing before text */
+}
+
+/* Larger on wide screens */
+@media (min-width: 992px) {
+  .experience-logo {
+    width: 54px;
+    height: 54px;
+    flex-basis: 54px;
+  }
+}
+
+.experience-list b {
+  color: #000;
+  font-weight: 600;
+}
+
+/* ===== Experience section links ===== */
+.experience-list a {
+  font-family: inherit;         /* match surrounding text (Lato) */
+  font-size: inherit;           /* same size as the rest */
+  font-weight: inherit;         /* no extra bolding */
+  color: #0056b3;               /* subtle academic blue */
+  text-decoration: none;
+}
+
+.experience-list a:hover {
+  text-decoration: underline;   /* simple hover feedback */
+  color: #003e8a;               /* slightly darker blue on hover */
+}
+
+
+/* ===== Section headers (Experience, News, etc.) ===== */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;       /* space above each section */
+  margin-bottom: 12px;    /* space below the header before content */
+}
+
+/* Smaller margin for the very first section after Intro */
+.section-header:first-of-type {
+  margin-top: 30px;
+}
+
+/* Make h2 visually consistent */
+.section-header h2 {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+/* Make small “To publications →” button align nicely */
+.section-header .btn {
+  font-size: 1.1rem;
+  padding: 3px 8px;
+}
+
+/* For larger standalone titles in project cards (like DARKO section) */
+.project-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+}
+.project-desc {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #222;
+}
+
+.project-thumb {
+  width: 100%;
+  max-width: 320px;          /* slightly larger than current */
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }

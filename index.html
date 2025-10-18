@@ -94,10 +94,45 @@
       </tbody>
     </table>
 
-    <!-- News header -->
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px;">
-      <h2 style="margin:0;">News</h2>
+    <!-- experience header -->
+    <div class="section-header">
+      <h2>Research Experiences</h2>
       <a class="btn btn-sm btn-outline-secondary" href="publications.html#selected">To publications →</a>
+    </div>
+    <ul class="experience-list">
+      <li>
+        <img class="experience-logo" src="images/logos/oru.png" alt="Örebro University logo" loading="lazy">
+        <div><b>2022 Mar -:</b> PhD Student in Computer Science at Örebro University, Sweden.</div>
+      </li>
+
+      <li>
+        <img class="experience-logo" src="images/logos/miraikan.png" alt="Miraikan logo" loading="lazy">
+        <div><b>2025 Jan - 2025 Mar:</b> Research Intern at <a href="https://www.miraikan.jst.go.jp/en/research/AccessibilityLab/" target="_blank">Miraikan Accessibility Lab</a>, Tokyo, Japan. 
+          Worked with with <a href="https://allanwangliqian.com/" target="_blank" rel="noopener">Allan Wang</a> 
+          on robot navigation through dense human crowds,  aligning with compatible crowd flows
+          for safe and efficient navigation.</div>
+      </li>
+
+      <li>
+        <img class="experience-logo" src="images/logos/bosch.svg" alt="Bosch logo" loading="lazy">
+        <div><b>2024 Mar - 2024 Sep:</b> 
+        Research Intern at
+        <a href="https://www.bosch.com/research/" target="_blank" rel="noopener">Robert Bosch GmbH Corporate Research</a>,
+        Stuttgart, Germany.
+        Worked with
+        <a href="https://rudenkoandrey.github.io/" target="_blank" rel="noopener">Andrey Rudenko</a>,
+        <a href="https://palmieri.github.io/" target="_blank" rel="noopener">Luigi Palmieri</a>,
+        and <a href="https://scholar.google.com/citations?user=U3KSTwkAAAAJ&hl=en" target="_blank" rel="noopener">Narunas Vaskevicius</a>
+        on online learning of human motion patterns in changing environments.
+        </div>
+      </li>
+
+    </ul>
+
+
+    <!-- News header -->
+    <div class="section-header">
+      <h2>News</h2>
     </div>
 
     <table style="width:100%;border:0;border-spacing:0;border-collapse:separate;margin:10px 0;">
@@ -565,6 +600,11 @@
   <!-- (Optional) Bootstrap JS if you want hamburger toggle on mobile -->
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+  document.querySelectorAll('a[href^="http"]').forEach(a => a.setAttribute('target', '_blank'));
+  document.querySelectorAll('a[href^="http"]').forEach(a => a.setAttribute('rel', 'noopener noreferrer'));
+  </script>
 
 </body>
 
