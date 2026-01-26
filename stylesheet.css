@@ -518,3 +518,54 @@ ul {
 .card-text {
   font-size: 0.95rem;
 }
+
+.iclr-confetti {
+  position: relative;
+  display: inline-block;
+  padding: 0 4px;
+}
+
+/* each piece of confetti */
+.iclr-confetti .confetti-piece {
+  position: absolute;
+  top: 0;
+  width: 4px;
+  height: 10px;
+  border-radius: 2px;
+  opacity: 0;
+  animation: confetti-burst 2.3s ease-out infinite;
+  transform-origin: center;
+}
+
+/* different colors, positions, timing for each piece */
+.iclr-confetti .confetti-piece:nth-child(2)  { left: -6px;  background:#ff4d4d; animation-delay:0s;    animation-duration:2.1s; }
+.iclr-confetti .confetti-piece:nth-child(3)  { left: 0px;   background:#ffd11a; animation-delay:0.2s;  animation-duration:2.4s; }
+.iclr-confetti .confetti-piece:nth-child(4)  { left: 6px;   background:#66ff66; animation-delay:0.1s;  animation-duration:2.0s; }
+.iclr-confetti .confetti-piece:nth-child(5)  { left: 12px;  background:#66b3ff; animation-delay:0.35s; animation-duration:2.5s; }
+.iclr-confetti .confetti-piece:nth-child(6)  { left: 18px;  background:#ff66ff; animation-delay:0.15s; animation-duration:2.2s; }
+.iclr-confetti .confetti-piece:nth-child(7)  { left: 24px;  background:#ff944d; animation-delay:0.4s;  animation-duration:2.3s; }
+.iclr-confetti .confetti-piece:nth-child(8)  { left: -12px; background:#b366ff; animation-delay:0.25s; animation-duration:2.6s; }
+.iclr-confetti .confetti-piece:nth-child(9)  { left: -18px; background:#4dd2ff; animation-delay:0.1s;  animation-duration:2.2s; }
+.iclr-confetti .confetti-piece:nth-child(10) { left: 30px;  background:#ff1ac6; animation-delay:0.05s; animation-duration:2.0s; }
+.iclr-confetti .confetti-piece:nth-child(11) { left: -24px; background:#33ff99; animation-delay:0.3s;  animation-duration:2.4s; }
+.iclr-confetti .confetti-piece:nth-child(12) { left: 36px;  background:#ffcc66; animation-delay:0.45s; animation-duration:2.7s; }
+
+/* go up, then fall down, like thrown confetti */
+@keyframes confetti-burst {
+  0% {
+    transform: translateY(0) scale(0.6) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    transform: translateY(-50px) scale(1) rotate(90deg); /* shoot upwards */
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(20px) scale(1) rotate(240deg); /* coming down */
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(70px) scale(1) rotate(360deg); /* below the text */
+    opacity: 0;
+  }
+}
