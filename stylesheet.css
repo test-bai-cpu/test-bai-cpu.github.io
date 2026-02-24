@@ -569,3 +569,41 @@ ul {
     opacity: 0;
   }
 }
+
+/* ===== Research topics chips ===== */
+.intro .research-topics{
+  margin-top: 0.6rem;
+  margin-bottom: 0.9rem;
+  font-size: 1.05rem;     /* match .intro p */
+  line-height: 1.35;      /* not huge */
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.45rem;   /* spacing between chips */
+}
+
+.intro .rt-label{
+  font-weight: 600;
+  margin-right: 0.1rem;
+}
+
+
+
+.intro .rt-chip{
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.95em;      /* slightly smaller than label */
+  line-height: 1.1;
+  padding: 0.18em 0.6em;  /* tighter, scales with font size */
+  border-radius: 999px;
+
+  background: rgba(23, 114, 208, 0.08);  /* #1772d0 */
+  border: 1px solid rgba(23, 114, 208, 0.22);
+  color: #000000;
+}
+
+.intro .rt-chip:hover{
+  background: rgba(255, 213, 0, 0.20);
+  border-color: rgba(255, 213, 0, 0.70);
+  color: #000;
+}
