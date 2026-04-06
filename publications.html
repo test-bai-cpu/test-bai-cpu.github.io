@@ -61,6 +61,7 @@
     </p>
     <p>
       <a href="https://arxiv.org/abs/2602.05608" class="btn btn-custom-sm btn-outline-dark" role="button">Paper</a>
+      <button class="btn btn-custom-sm btn-outline-dark" onclick="openCite('hicrowd')">Cite</button>
     </p>
     <p>
       More excitingly🔥, we evaluate HiCrowd in <strong>real-world environments</strong>:
@@ -119,6 +120,7 @@
             <p>
               <a href="https://arxiv.org/abs/2510.14827" class="btn btn-custom-sm btn-outline-dark" role="button">Paper</a>
               <a href="https://github.com/test-bai-cpu/continuous_MoD" class="btn btn-custom-sm btn-outline-dark" role="button">Code</a>
+              <button class="btn btn-custom-sm btn-outline-dark" onclick="openCite('nemomap')">Cite</button>
             </p>
           </td>
         </tr>
@@ -142,6 +144,7 @@
             <p>
               <a href="https://arxiv.org/abs/2510.03031" class="btn btn-custom-sm btn-outline-dark" role="button">Paper</a>
               <a href="https://github.com/test-bai-cpu/LHMP-with-MoDs" class="btn btn-custom-sm btn-outline-dark" role="button">Code</a>
+              <button class="btn btn-custom-sm btn-outline-dark" onclick="openCite('rallhmp')">Cite</button>
             </p>
           </td>
         </tr>
@@ -167,6 +170,7 @@
             <p>
               <a href="https://arxiv.org/abs/2410.12237" class="btn btn-custom-sm btn-outline-dark" role="button">Paper</a>
               <a href="https://github.com/test-bai-cpu/online-mod" class="btn btn-custom-sm btn-outline-dark" role="button">Code</a>
+              <button class="btn btn-custom-sm btn-outline-dark" onclick="openCite('onlinecliff')">Cite</button>
             </p>
           </td>
         </tr>
@@ -190,6 +194,7 @@
             <p>
               <a href="https://ieeexplore.ieee.org/document/10545544" class="btn btn-custom-sm btn-outline-dark" role="button">Paper</a>
               <a href="https://github.com/tmralmeida/class-cond-trajpred" class="btn btn-custom-sm btn-outline-dark" role="button">Code</a>
+              <button class="btn btn-custom-sm btn-outline-dark" onclick="openCite('hetero')">Cite</button>
             </p>
           </td>
         </tr>
@@ -213,6 +218,7 @@
             <p>
               <a href="https://ieeexplore.ieee.org/document/10610717" class="btn btn-custom-sm btn-outline-dark" role="button">Paper</a>
               <a href="https://github.com/test-bai-cpu/LaCE-LHMP" class="btn btn-custom-sm btn-outline-dark" role="button">Code</a>
+              <button class="btn btn-custom-sm btn-outline-dark" onclick="openCite('lacelhmp')">Cite</button>
             </p>
           </td>
         </tr>
@@ -236,6 +242,7 @@
             <p>
               <a href="https://ieeexplore.ieee.org/abstract/document/10342031" class="btn btn-custom-sm btn-outline-dark" role="button">Paper</a>
               <a href="https://github.com/test-bai-cpu/CLiFF-LHMP" class="btn btn-custom-sm btn-outline-dark" role="button">Code</a>
+              <button class="btn btn-custom-sm btn-outline-dark" onclick="openCite('clifflhmp')">Cite</button>
             </p>
           </td>
         </tr>
@@ -251,6 +258,183 @@
   <script>
   document.querySelectorAll('a[href^="http"]').forEach(a => a.setAttribute('target', '_blank'));
   document.querySelectorAll('a[href^="http"]').forEach(a => a.setAttribute('rel', 'noopener noreferrer'));
+  </script>
+
+  <!-- Citation Modal -->
+  <div class="cite-overlay" id="citeOverlay" onclick="if(event.target===this)closeCite()">
+    <div class="cite-modal">
+      <div class="cite-modal-header">
+        <h3>Cite</h3>
+        <button class="cite-close-btn" onclick="closeCite()" aria-label="Close">&times;</button>
+      </div>
+      <div class="cite-modal-body">
+        <div class="cite-tabs">
+          <button class="cite-tab active" onclick="switchCiteTab(event,'bibtex')">BibTeX</button>
+          <button class="cite-tab" onclick="switchCiteTab(event,'plain')">Plain Text</button>
+        </div>
+        <div class="cite-block active" id="cite-bibtex">
+          <pre id="cite-bibtex-pre"></pre>
+          <button class="cite-copy-btn" onclick="copyCite('cite-bibtex-pre', this)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copy
+          </button>
+        </div>
+        <div class="cite-block" id="cite-plain">
+          <pre id="cite-plain-pre"></pre>
+          <button class="cite-copy-btn" onclick="copyCite('cite-plain-pre', this)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copy
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  /* ---- Citation data ---- */
+  const citations = {
+    hicrowd: {
+      bibtex: `@inproceedings{zhu2026hicrowd,
+  title     = {HiCrowd: Hierarchical Crowd Flow Alignment for Dense Human Environments},
+  author    = {Zhu, Yufei and Yang, Shih-Min and Magnusson, Martin and Wang, Allan},
+  booktitle = {IEEE International Conference on Robotics and Automation (ICRA)},
+  year      = {2026}
+}`,
+      plain: `Y. Zhu, S.-M. Yang, M. Magnusson, and A. Wang, "HiCrowd: Hierarchical Crowd Flow Alignment for Dense Human Environments," in Proc. IEEE International Conference on Robotics and Automation (ICRA), 2026.`
+    },
+    nemomap: {
+      bibtex: `@inproceedings{zhu2026nemomap,
+  title     = {NeMo-map: Neural Implicit Flow Fields for Spatio-Temporal Motion Mapping},
+  author    = {Zhu, Yufei and Yang, Shih-Min and Rudenko, Andrey and Kucner, Tomasz P. and Lilienthal, Achim J. and Magnusson, Martin},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2026}
+}`,
+      plain: `Y. Zhu, S.-M. Yang, A. Rudenko, T. P. Kucner, A. J. Lilienthal, and M. Magnusson, "NeMo-map: Neural Implicit Flow Fields for Spatio-Temporal Motion Mapping," in International Conference on Learning Representations (ICLR), 2026.`
+    },
+    rallhmp: {
+      bibtex: `@article{zhu2025modlhmp,
+  title     = {Long-Term Human Motion Prediction Using Spatio-Temporal Maps of Dynamics},
+  author    = {Zhu, Yufei and Rudenko, Andrey and Kucner, Tomasz P. and Lilienthal, Achim J. and Magnusson, Martin},
+  journal   = {IEEE Robotics and Automation Letters (RA-L)},
+  year      = {2025},
+  volume    = {10},
+  number    = {11},
+  pages     = {12229-12236},
+  doi       = {10.1109/LRA.2025.3619831}
+}`,
+      plain: `Y. Zhu, A. Rudenko, T. P. Kucner, A. J. Lilienthal, and M. Magnusson, "Long-Term Human Motion Prediction Using Spatio-Temporal Maps of Dynamics," IEEE Robotics and Automation Letters (RA-L), 2025.`
+    },
+    onlinecliff: {
+      bibtex: `@inproceedings{zhu2025onlinecliff,
+  title     = {Fast Online Learning of CLiFF-maps in Changing Environments},
+  author    = {Zhu, Yufei and Rudenko, Andrey and Palmieri, Luigi and Heuer, Lukas and Lilienthal, Achim J. and Magnusson, Martin},
+  booktitle = {IEEE International Conference on Robotics and Automation (ICRA)},
+  doi       = {10.1109/ICRA55743.2025.11127602},
+  year      = {2025}
+}`,
+      plain: `Y. Zhu, A. Rudenko, L. Palmieri, L. Heuer, A. J. Lilienthal, and M. Magnusson, "Fast Online Learning of CLiFF-maps in Changing Environments," in Proc. IEEE International Conference on Robotics and Automation (ICRA), 2025.`
+    },
+    hetero: {
+      bibtex: `@article{almeida2024trajpred,
+  title     = {Trajectory Prediction for Heterogeneous Agents: A Performance Analysis on Small and Imbalanced Datasets},
+  author    = {de Almeida, Tiago Rodrigues and Zhu, Yufei and Rudenko, Andrey and Kucner, Tomasz P. and Stork, Johannes A. and Magnusson, Martin and Lilienthal, Achim J.},
+  journal   = {IEEE Robotics and Automation Letters (RA-L)},
+  year      = {2024},
+  volume    = {9},
+  number    = {7},
+  pages     = {6576-6583},
+  doi       = {10.1109/LRA.2024.3408510}
+}`,
+      plain: `T. R. de Almeida*, Y. Zhu*, A. Rudenko, T. P. Kucner, J. A. Stork, M. Magnusson, and A. J. Lilienthal, "Trajectory Prediction for Heterogeneous Agents: A Performance Analysis on Small and Imbalanced Datasets," IEEE Robotics and Automation Letters (RA-L), 2024.`
+    },
+    lacelhmp: {
+      bibtex: `@inproceedings{zhu2024lacelhmp,
+  title     = {LaCE-LHMP: Airflow Modelling-Inspired Long-Term Human Motion Prediction By Enhancing Laminar Characteristics in Human Flow},
+  author    = {Zhu, Yufei and Fan, Han and Rudenko, Andrey and Magnusson, Martin and Schaffernicht, Erik and Lilienthal, Achim J.},
+  booktitle = {IEEE International Conference on Robotics and Automation (ICRA)},
+  year      = {2024},
+  doi       = {10.1109/ICRA57147.2024.10610717}
+}`,
+      plain: `Y. Zhu, H. Fan, A. Rudenko, M. Magnusson, E. Schaffernicht, and A. J. Lilienthal, "LaCE-LHMP: Airflow Modelling-Inspired Long-Term Human Motion Prediction By Enhancing Laminar Characteristics in Human Flow," in Proc. IEEE International Conference on Robotics and Automation (ICRA), 2024.`
+    },
+    clifflhmp: {
+      bibtex: `@inproceedings{zhu2023clifflhmp,
+  title     = {CLiFF-LHMP: Using Spatial Dynamics Patterns for Long-Term Human Motion Prediction},
+  author    = {Zhu, Yufei and Rudenko, Andrey and Kucner, Tomasz P. and Palmieri, Luigi and Arras, Kai O. and Lilienthal, Achim J. and Magnusson, Martin},
+  booktitle = {IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
+  year      = {2023},
+  doi       = {10.1109/IROS55552.2023.10342031}
+}`,
+      plain: `Y. Zhu, A. Rudenko, T. P. Kucner, L. Palmieri, K. O. Arras, A. J. Lilienthal, and M. Magnusson, "CLiFF-LHMP: Using Spatial Dynamics Patterns for Long-Term Human Motion Prediction," in Proc. IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS), 2023.`
+    }
+  };
+
+  /* ---- Modal logic ---- */
+  function openCite(key) {
+    const data = citations[key];
+    if (!data) return;
+    document.getElementById('cite-bibtex-pre').textContent = data.bibtex;
+    document.getElementById('cite-plain-pre').textContent  = data.plain;
+    // Reset to BibTeX tab
+    document.querySelectorAll('.cite-tab').forEach((t, i) => t.classList.toggle('active', i === 0));
+    document.querySelectorAll('.cite-block').forEach((b, i) => b.classList.toggle('active', i === 0));
+    // Reset copy buttons
+    document.querySelectorAll('.cite-copy-btn').forEach(b => { b.classList.remove('copied'); b.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy'; });
+    document.getElementById('citeOverlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeCite() {
+    document.getElementById('citeOverlay').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function switchCiteTab(e, format) {
+    document.querySelectorAll('.cite-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.cite-block').forEach(b => b.classList.remove('active'));
+    e.target.classList.add('active');
+    document.getElementById('cite-' + format).classList.add('active');
+  }
+
+  function copyCite(preId, btn) {
+    const text = document.getElementById(preId).textContent;
+
+    function onSuccess() {
+      btn.classList.add('copied');
+      btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Copied!';
+      setTimeout(() => {
+        btn.classList.remove('copied');
+        btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy';
+      }, 2000);
+    }
+
+    function fallbackCopy() {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.left = '-9999px';
+      ta.style.top = '-9999px';
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      try {
+        document.execCommand('copy');
+        onSuccess();
+      } catch (e) {
+        alert('Copy failed — please select the text manually.');
+      }
+      document.body.removeChild(ta);
+    }
+
+    if (navigator.clipboard && navigator.clipboard.writeText && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(onSuccess).catch(fallbackCopy);
+    } else {
+      fallbackCopy();
+    }
+  }
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeCite(); });
   </script>
 
 </body>
