@@ -61,6 +61,7 @@
     </p>
     <p>
       <a href="https://arxiv.org/abs/2602.05608" class="btn btn-custom-sm btn-outline-dark" role="button">Paper</a>
+      <button class="btn btn-custom-sm btn-outline-dark" onclick="openVideo('hicrowd')">Video</button>
       <button class="btn btn-custom-sm btn-outline-dark" onclick="openCite('hicrowd')">Cite</button>
     </p>
     <p>
@@ -120,6 +121,7 @@
             <p>
               <a href="https://arxiv.org/abs/2510.14827" class="btn btn-custom-sm btn-outline-dark" role="button">Paper</a>
               <a href="https://github.com/test-bai-cpu/continuous_MoD" class="btn btn-custom-sm btn-outline-dark" role="button">Code</a>
+              <button class="btn btn-custom-sm btn-outline-dark" onclick="openMedia('nemomap')">Slides / Poster</button>
               <button class="btn btn-custom-sm btn-outline-dark" onclick="openCite('nemomap')">Cite</button>
             </p>
           </td>
@@ -289,6 +291,105 @@
       </div>
     </div>
   </div>
+
+  <!-- Video Modal (add this right after the Citation Modal) -->
+  <div class="cite-overlay" id="videoOverlay" onclick="if(event.target===this)closeVideo()">
+    <div class="cite-modal" style="max-width:800px;">
+      <div class="cite-modal-header">
+        <h3>Video</h3>
+        <button class="cite-close-btn" onclick="closeVideo()" aria-label="Close">&times;</button>
+      </div>
+      <div class="cite-modal-body" style="padding:0;">
+        <div id="videoContainer" style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  /* ---- Video data ---- */
+  const videos = {
+    hicrowd: 'R6--sO4Ntqw'
+  };
+
+  function openVideo(key) {
+    const vid = videos[key];
+    if (!vid) return;
+    document.getElementById('videoContainer').innerHTML =
+      '<iframe style="position:absolute;top:0;left:0;width:100%;height:100%;" ' +
+      'src="https://www.youtube.com/embed/' + vid + '?autoplay=1" ' +
+      'frameborder="0" allow="autoplay;encrypted-media" allowfullscreen></iframe>';
+    document.getElementById('videoOverlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeVideo() {
+    document.getElementById('videoContainer').innerHTML = '';
+    document.getElementById('videoOverlay').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeVideo(); });
+  </script>
+
+  <!-- Media Modal (Slides / Poster) -->
+  <div class="cite-overlay" id="mediaOverlay" onclick="if(event.target===this)closeMedia()">
+    <div class="cite-modal" style="max-width:1000px;">
+      <div class="cite-modal-header">
+        <h3>Slides / Poster</h3>
+        <button class="cite-close-btn" onclick="closeMedia()" aria-label="Close">&times;</button>
+      </div>
+      <div class="cite-modal-body">
+        <div class="cite-tabs">
+          <button class="cite-tab active" id="media-tab-slides" onclick="switchMediaTab(event,'slides')">Slides</button>
+          <button class="cite-tab" id="media-tab-poster" onclick="switchMediaTab(event,'poster')">Poster</button>
+        </div>
+        <div class="cite-block active" id="media-slides" style="padding:0;">
+          <iframe id="media-slides-iframe" style="width:100%;height:80vh;border:none;"></iframe>
+        </div>
+        <div class="cite-block" id="media-poster" style="padding:0;">
+          <iframe id="media-poster-iframe" style="width:100%;height:80vh;border:none;"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  const mediaFiles = {
+    nemomap: {
+      slides: 'files/nemomap_slides.pdf',
+      poster: 'files/nemomap_poster.pdf'
+    }
+  };
+
+  function openMedia(key) {
+    const data = mediaFiles[key];
+    if (!data) return;
+    document.getElementById('media-slides-iframe').src = data.slides || '';
+    document.getElementById('media-poster-iframe').src = data.poster || '';
+    // Reset to Slides tab
+    document.querySelectorAll('#mediaOverlay .cite-tab').forEach((t, i) => t.classList.toggle('active', i === 0));
+    document.querySelectorAll('#mediaOverlay .cite-block').forEach((b, i) => b.classList.toggle('active', i === 0));
+    document.getElementById('mediaOverlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMedia() {
+    document.getElementById('media-slides-iframe').src = '';
+    document.getElementById('media-poster-iframe').src = '';
+    document.getElementById('mediaOverlay').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function switchMediaTab(e, tab) {
+    document.querySelectorAll('#mediaOverlay .cite-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('#mediaOverlay .cite-block').forEach(b => b.classList.remove('active'));
+    e.target.classList.add('active');
+    document.getElementById('media-' + tab).classList.add('active');
+  }
+
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMedia(); });
+  </script>
 
   <script>
   /* ---- Citation data ---- */
